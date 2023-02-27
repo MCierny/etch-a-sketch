@@ -17,6 +17,9 @@ html, body {
     height: 10px;
 }
 
-.grid-div:hover {
+.grid-after-black {
     background-color: black;
+}
+.grid-after-white {
+    background-color: white;
 }
