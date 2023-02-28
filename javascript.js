@@ -8,7 +8,6 @@ const gridContainer = document.querySelector('.grid-container');
 const sliderSize = document.querySelector('.slider-size');
 let slider = document.querySelector('input');
 
-
 // Click and Hold mouse event (for optionals)
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
@@ -29,20 +28,24 @@ slider.oninput = function() {
 
 drawGrid();
 function drawGrid() {
-    for (let j = 1; j <= sliderOutput; j++) { // Change sliderOutput to gridSize if I want to get grid size input by prompt
+    for (let j = 0; j < sliderOutput; j++) { // Change sliderOutput to gridSize if I want to get grid size input by prompt
         let gridRow = document.createElement('div');
         gridRow.classList.add('grid-row');
         gridContainer.appendChild(gridRow);
 
-        for (let i = 1; i <= sliderOutput; i++) {
+        for (let i = 0; i < sliderOutput; i++) {
             let gridDiv = document.createElement('div');
             gridDiv.classList.add('grid-div');
             gridDiv.classList.add('toggle');
+            gridDiv.setAttribute(`style`, `width: ${getElementWidth(sliderOutput)}px; height: ${getElementWidth(sliderOutput)}px;`);
             gridRow.appendChild(gridDiv);
         }
     }
 }
 
+function getElementWidth(sliderOutput) {
+    return (500 / sliderOutput) - 2;
+}
 
 function clearGrid() {
     const myNode = document.getElementById("grid-container");
@@ -86,14 +89,23 @@ btnRandom.onclick = () => {
       };
 };
 
+
+
 function update(picker) {
     document.onmouseover = function(e){
         const target = e.target.closest(".grid-div");
         if (target && mouseDown) {
             target.style.backgroundColor = picker.toHEXString();
         }
-      };
+    };
+    document.onclick = () => {
+        btnColor.style.backgroundColor = picker.toHEXString();
+    }
 }
+
+// btnColor.onclick = () => {
+//     btnColor.style.backgroundColor = picker.toHEXString();
+// }
 
 gridContainer.onclick = () => {
     gridContainer.onmouseover = function(e){ // using Event Delegation to target newly created DOMs
