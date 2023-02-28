@@ -112,7 +112,7 @@ button:active {
 
 }
 
-#btn-erase:focus:, #btn-random:focus{
+#btn-erase:focus, #btn-random:focus {
     background-color: black;
     color: white;
 }
